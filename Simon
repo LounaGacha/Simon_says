@@ -1,0 +1,70 @@
+PFont simon;
+
+Boutons [] bouton = new Boutons[4]; //crée 4 bouton de 0 à 3
+
+int boutonPause = 0;
+
+void setup() {
+ size(800,800); 
+ 
+ bouton[0] = new Boutons(width/2-10,height/2-10,550,550,PI,PI+PI/2,PIE,#00ff00);
+ bouton[1] = new Boutons(width/2+10,height/2-10,550,550,PI+PI/2,TWO_PI,PIE,#ff0000);
+ bouton[2] = new Boutons(width/2-10,height/2+10,550,550,PI/2,PI,PIE,#ffff00);
+ bouton[3] = new Boutons(width/2+10,height/2+10,550,550,0,PI/2,PIE,#0000ff);
+ 
+}
+
+void draw() {
+ background(255,253,185);
+ 
+ //base
+  fill(0);
+  circle(width/2,height/2,600);
+  
+  if(millis() >= boutonPause) { //millis = temps écoulé depuis une action
+  int simonNote = int(random(0,4));
+    println(simonNote);
+    bouton[simonNote].lightOn = true;
+    
+    boutonPause = millis() + 420 + 50; //0.42 de son et 0.05 temps de pause
+  }
+  
+  
+ for(Boutons currentBoutons : bouton) {  //affiche les 4 boutons
+  currentBoutons.display(); 
+ }
+  
+  //base sur boutons
+   fill(0);
+   circle(width/2,height/2,250);
+ 
+ //Simon text
+ simon = loadFont("Ebrima-Bold-60.vlw");
+ textFont(simon);
+ fill(255);
+ text("SIMON",width/2-100,height/2);
+}
+
+void mousePressed() {
+ //println("pressed");
+ if(bouton[0].mouseBoutonV() == true){
+   bouton[0].lightOn = true;
+ }
+   if(bouton[1].mouseBoutonR() == true){
+   bouton[1].lightOn = true;
+ }
+  if(bouton[2].mouseBoutonJ() == true){
+   bouton[2].lightOn = true;
+ }
+  if(bouton[3].mouseBoutonB() == true){
+   bouton[3].lightOn = true;
+ }
+}
+
+void mouseReleased() {
+ //println("released");
+ bouton[0].lightOn = false;
+ bouton[1].lightOn = false;
+ bouton[2].lightOn = false;
+ bouton[3].lightOn = false;
+}
