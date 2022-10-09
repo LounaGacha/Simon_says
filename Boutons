@@ -1,0 +1,111 @@
+class Boutons {
+  float x,y;
+  float sizeW;
+  float sizeH;
+  float start;
+  float stop;
+  int mode;
+  color couleur;
+  color darkCouleur;
+  
+  boolean lightOn = false;
+  
+  Boutons(float tempx,float tempy,float tempsizeW , float tempsizeH, float tempstart,float tempstop, int tempmode,color tempcouleur){
+   x = tempx;
+   y = tempy;
+   sizeW = tempsizeW;
+   sizeH = tempsizeH;
+   start = tempstart;
+   stop = tempstop;
+   mode = tempmode;
+   couleur = tempcouleur;
+    
+   darkCouleur = lerpColor(0, couleur, 0.5);
+   
+  }
+void display() {
+  
+  if(lightOn){
+   fill(couleur);
+  }
+  else {
+    fill(darkCouleur);
+  }
+ arc(x,y,sizeW,sizeH,start,stop,mode);
+  }
+
+boolean mouseBoutonV() {
+  
+  if(mouseX <= x && mouseX >= x-sizeW/2 && 
+  mouseY <= y && mouseY >= y-sizeW/2 ) {
+    return true;
+  }
+  else {
+  return false;
+  }
+}
+
+boolean mouseBoutonR() {
+  
+  if(mouseX >= x && mouseX <= x+sizeW/2 && 
+  mouseY <= y && mouseY >= y-sizeW/2 ) {
+    return true;
+  }
+  else {
+  return false;
+  }
+}
+
+boolean mouseBoutonJ() {
+  
+  if(mouseX <= x && mouseX >= x-sizeW/2 && 
+  mouseY >= y && mouseY <= y+sizeW/2 ) {
+    return true;
+  }
+  else {
+  return false;
+  }
+}
+
+boolean mouseBoutonB() {
+  
+  if(mouseX >= x && mouseX <= x+sizeW/2 && 
+  mouseY >= y && mouseY <= y+sizeW/2 ) {
+    return true;
+  }
+  else {
+  return false;
+  }
+}
+
+
+
+/**
+ void mousePressed(){
+   //if(boutonV.mouseBouton() == true) {
+    // println("Bouton V");
+   bouton1.lightOn = true;
+   //}
+  // if(boutonR.mouseBouton() == true) {
+    // println("Bouton R");
+   bouton2.lightOn = true;
+   //}
+   //if(boutonJ.mouseBouton() == true) {
+     //println("Bouton J");
+   bouton3.lightOn = true;
+   //}
+   //if(boutonB.mouseBouton() == true) {
+    // println("Bouton B");
+   bouton4.lightOn = true;
+  // }
+ }
+ 
+ 
+ void mouseReleased(){
+   bouton1.lightOn = false;
+   bouton2.lightOn = false;
+   bouton3.lightOn = false;
+   bouton4.lightOn = false;
+ }
+ */
+}
