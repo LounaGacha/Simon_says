@@ -1,0 +1,47 @@
+// go to sketch -> Import Librarie -> Manage Libraries 
+//-> "Sound | Provides a simple way to work with audio"
+
+import processing.sound.*;
+
+class SimonTones {
+  
+  float [] simonTone = { 391.995, 329.628, 261.626, 195.998, 48.9994 }; //V,R,J,B,Wrong
+  
+  SqrOsc wave;
+  
+  int stopToneTime;
+  boolean playingTone = false;
+  
+  SimonTones(PApplet p) {
+    wave = new SqrOsc(p);
+    wave.play();
+    wave.amp(0.0);
+  }
+  
+  
+  void playTone(int index, int toneDuration) {
+    wave.amp(0.6);
+    wave.freq(simonTone[index]);
+    
+    stopToneTime = millis() + toneDuration;
+    playingTone = true;
+  }
+  
+  void checkPlayTime() {
+    if(playingTone) {
+    if(millis() >= stopToneTime) {
+      stopTone();
+      }
+    }
+  }
+  
+  void stopTone() {
+    if(playingTone) {
+    wave.amp(0.0);
+    playingTone = false;
+    }
+  }
+  
+  
+  
+}
