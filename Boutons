@@ -1,4 +1,5 @@
 class Boutons {
+  int ID;
   float x,y;
   float sizeW;
   float sizeH;
@@ -10,7 +11,8 @@ class Boutons {
   
   boolean lightOn = false;
   
-  Boutons(float tempx,float tempy,float tempsizeW , float tempsizeH, float tempstart,float tempstop, int tempmode,color tempcouleur){
+  Boutons(int tempID, float tempx,float tempy,float tempsizeW , float tempsizeH, float tempstart,float tempstop, int tempmode,color tempcouleur){
+   ID = tempID;
    x = tempx;
    y = tempy;
    sizeW = tempsizeW;
@@ -76,36 +78,5 @@ boolean mouseBoutonB() {
   else {
   return false;
   }
-}
-
-
-
-/**
- void mousePressed(){
-   //if(boutonV.mouseBouton() == true) {
-    // println("Bouton V");
-   bouton1.lightOn = true;
-   //}
-  // if(boutonR.mouseBouton() == true) {
-    // println("Bouton R");
-   bouton2.lightOn = true;
-   //}
-   //if(boutonJ.mouseBouton() == true) {
-     //println("Bouton J");
-   bouton3.lightOn = true;
-   //}
-   //if(boutonB.mouseBouton() == true) {
-    // println("Bouton B");
-   bouton4.lightOn = true;
-  // }
  }
- 
- 
- void mouseReleased(){
-   bouton1.lightOn = false;
-   bouton2.lightOn = false;
-   bouton3.lightOn = false;
-   bouton4.lightOn = false;
- }
- */
 }
