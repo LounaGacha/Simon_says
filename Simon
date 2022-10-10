@@ -1,33 +1,41 @@
 PFont simon;
 
 Boutons [] bouton = new Boutons[4]; //crée 4 bouton de 0 à 3
+SimonTones simonTone;
 
 int boutonPause = 0;
 
 void setup() {
  size(800,800); 
  
- bouton[0] = new Boutons(width/2-10,height/2-10,550,550,PI,PI+PI/2,PIE,#00ff00);
- bouton[1] = new Boutons(width/2+10,height/2-10,550,550,PI+PI/2,TWO_PI,PIE,#ff0000);
- bouton[2] = new Boutons(width/2-10,height/2+10,550,550,PI/2,PI,PIE,#ffff00);
- bouton[3] = new Boutons(width/2+10,height/2+10,550,550,0,PI/2,PIE,#0000ff);
+ bouton[0] = new Boutons(0,width/2-10,height/2-10,550,550,PI,PI+PI/2,PIE,#00ff00);
+ bouton[1] = new Boutons(1,width/2+10,height/2-10,550,550,PI+PI/2,TWO_PI,PIE,#ff0000);
+ bouton[2] = new Boutons(2,width/2-10,height/2+10,550,550,PI/2,PI,PIE,#ffff00);
+ bouton[3] = new Boutons(3,width/2+10,height/2+10,550,550,0,PI/2,PIE,#0000ff);
  
+ simonTone = new SimonTones(this);
 }
 
 void draw() {
  background(255,253,185);
  
+ simonTone.checkPlayTime();
+ 
  //base
   fill(0);
   circle(width/2,height/2,600);
   
+  if(simonTone.playingTone == false) lightOff();
+
   if(millis() >= boutonPause) { //millis = temps écoulé depuis une action
-  int simonNote = int(random(0,4));
-    println(simonNote);
+    int simonNote = int(random(0,4));
+    simonTone.playTone(simonNote, 420);
     bouton[simonNote].lightOn = true;
     
     boutonPause = millis() + 420 + 50; //0.42 de son et 0.05 temps de pause
   }
+  
+  
   
   
  for(Boutons currentBoutons : bouton) {  //affiche les 4 boutons
@@ -47,23 +55,32 @@ void draw() {
 
 void mousePressed() {
  //println("pressed");
- if(bouton[0].mouseBoutonV() == true){
+   if(bouton[0].mouseBoutonV() == true){
+   simonTone.playTone(bouton[0].ID, 420);
    bouton[0].lightOn = true;
  }
    if(bouton[1].mouseBoutonR() == true){
+     simonTone.playTone(bouton[1].ID, 420);
    bouton[1].lightOn = true;
  }
   if(bouton[2].mouseBoutonJ() == true){
+    simonTone.playTone(bouton[2].ID, 420);
    bouton[2].lightOn = true;
  }
   if(bouton[3].mouseBoutonB() == true){
+    simonTone.playTone(bouton[3].ID, 420);
    bouton[3].lightOn = true;
  }
 }
 
 void mouseReleased() {
  //println("released");
- bouton[0].lightOn = false;
+ simonTone.stopTone();
+ lightOff();
+}
+
+void lightOff() {
+   bouton[0].lightOn = false;
  bouton[1].lightOn = false;
  bouton[2].lightOn = false;
  bouton[3].lightOn = false;
