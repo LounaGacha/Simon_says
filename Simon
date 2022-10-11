@@ -1,6 +1,6 @@
 PFont simon;
 
-Boutons [] bouton = new Boutons[4]; //crée 4 bouton de 0 à 3
+Boutons [] bouton = new Boutons[4]; //crée 4 boutons de 0 à 3
 SimonTones simonTone;
 
 int boutonPause = 0;
@@ -8,6 +8,7 @@ int boutonPause = 0;
 void setup() {
  size(800,800); 
  
+ //création class bouton V,R,J,B
  bouton[0] = new Boutons(0,width/2-10,height/2-10,550,550,PI,PI+PI/2,PIE,#00ff00);
  bouton[1] = new Boutons(1,width/2+10,height/2-10,550,550,PI+PI/2,TWO_PI,PIE,#ff0000);
  bouton[2] = new Boutons(2,width/2-10,height/2+10,550,550,PI/2,PI,PIE,#ffff00);
@@ -27,6 +28,7 @@ void draw() {
   
   if(simonTone.playingTone == false) lightOff();
 
+/**
   if(millis() >= boutonPause) { //millis = temps écoulé depuis une action
     int simonNote = int(random(0,4));
     simonTone.playTone(simonNote, 420);
@@ -34,7 +36,7 @@ void draw() {
     
     boutonPause = millis() + 420 + 50; //0.42 de son et 0.05 temps de pause
   }
-  
+  */
   
   
   
@@ -47,7 +49,7 @@ void draw() {
    circle(width/2,height/2,250);
  
  //Simon text
- simon = loadFont("Ebrima-Bold-60.vlw");
+ simon = loadFont("Comfortaa-Bold-60.vlw"); //Ebrima-Bold-60.vlw
  textFont(simon);
  fill(255);
  text("SIMON",width/2-100,height/2);
@@ -55,19 +57,19 @@ void draw() {
 
 void mousePressed() {
  //println("pressed");
-   if(bouton[0].mouseBoutonV() == true){
+   if(bouton[0].mouseBoutonV() == true){ //bouton vert appuyé
    simonTone.playTone(bouton[0].ID, 420);
    bouton[0].lightOn = true;
  }
-   if(bouton[1].mouseBoutonR() == true){
+   if(bouton[1].mouseBoutonR() == true){ //bouton rouge appuyé
      simonTone.playTone(bouton[1].ID, 420);
    bouton[1].lightOn = true;
  }
-  if(bouton[2].mouseBoutonJ() == true){
+  if(bouton[2].mouseBoutonJ() == true){ //bouton jaune appuyé
     simonTone.playTone(bouton[2].ID, 420);
    bouton[2].lightOn = true;
  }
-  if(bouton[3].mouseBoutonB() == true){
+  if(bouton[3].mouseBoutonB() == true){ //bouton bleu appuyé
     simonTone.playTone(bouton[3].ID, 420);
    bouton[3].lightOn = true;
  }
@@ -80,8 +82,8 @@ void mouseReleased() {
 }
 
 void lightOff() {
-   bouton[0].lightOn = false;
- bouton[1].lightOn = false;
- bouton[2].lightOn = false;
- bouton[3].lightOn = false;
+   bouton[0].lightOn = false; //bouton vert relaché
+   bouton[1].lightOn = false; //bouton rouge relaché
+   bouton[2].lightOn = false; //bouton jaune relaché
+   bouton[3].lightOn = false; //bouton bleu relaché
 }
