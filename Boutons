@@ -11,6 +11,7 @@ class Boutons {
   
   boolean lightOn = false;
   
+  //paramètre de la class bouton
   Boutons(int tempID, float tempx,float tempy,float tempsizeW , float tempsizeH, float tempstart,float tempstop, int tempmode,color tempcouleur){
    ID = tempID;
    x = tempx;
@@ -27,6 +28,7 @@ class Boutons {
   }
 void display() {
   
+  //affichage lumière
   if(lightOn){
    fill(couleur);
   }
@@ -36,7 +38,7 @@ void display() {
  arc(x,y,sizeW,sizeH,start,stop,mode);
   }
 
-boolean mouseBoutonV() {
+boolean mouseBoutonV() { //délimitaion bouton vert
   
   if(mouseX <= x && mouseX >= x-sizeW/2 && 
   mouseY <= y && mouseY >= y-sizeW/2 ) {
@@ -47,7 +49,7 @@ boolean mouseBoutonV() {
   }
 }
 
-boolean mouseBoutonR() {
+boolean mouseBoutonR() { //délimitaion bouton rouge
   
   if(mouseX >= x && mouseX <= x+sizeW/2 && 
   mouseY <= y && mouseY >= y-sizeW/2 ) {
@@ -58,7 +60,7 @@ boolean mouseBoutonR() {
   }
 }
 
-boolean mouseBoutonJ() {
+boolean mouseBoutonJ() { //délimitaion bouton jaune
   
   if(mouseX <= x && mouseX >= x-sizeW/2 && 
   mouseY >= y && mouseY <= y+sizeW/2 ) {
@@ -69,7 +71,7 @@ boolean mouseBoutonJ() {
   }
 }
 
-boolean mouseBoutonB() {
+boolean mouseBoutonB() { //délimitaion bouton bleu
   
   if(mouseX >= x && mouseX <= x+sizeW/2 && 
   mouseY >= y && mouseY <= y+sizeW/2 ) {
